@@ -1,12 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useContext } from 'react';
 import Link from 'next/link';
 import Moon from '@/public/icons/moon';
 import Sun from '@/public/icons/sun';
 import { usePathname } from 'next/navigation';
+import IconBtn from '@/components/IconBtn';
+import { GlobalContext } from '@/global-context';
 
 const Header = () => {
+  const { isDarkState } = useContext(GlobalContext);
+  const [isDark, setIsDark] = isDarkState;
   const pathname = usePathname();
   const menus = [
     { name: '리포지토리 목록', path: '/repos' },
@@ -14,7 +18,13 @@ const Header = () => {
   ];
 
   const isCurrentPage = (path) => {
-    return pathname.includes(path) ? 'font-bold' : '';
+    return pathname === path ? 'font-bold' : '';
+  };
+
+  const changeTheme = (theme: boolean) => {
+    console.log('isDark', isDark);
+    console.log('isDark', theme);
+    setIsDark(theme);
   };
 
   return (
@@ -27,8 +37,11 @@ const Header = () => {
         ))}
       </div>
       <div className="flex gap-2">
-        <Moon />
-        <Sun />
+        {isDark ? (
+          <IconBtn icon={<Moon />} onClick={() => changeTheme(false)} />
+        ) : (
+          <IconBtn icon={<Sun />} onClick={() => changeTheme(true)} />
+        )}
       </div>
     </div>
   );

@@ -3,7 +3,7 @@
 import React from 'react';
 import { useModal } from '@/hooks';
 
-const UsersContainer = () => {
+const ModalContainer = () => {
   const { openModal } = useModal();
 
   const openUserDetails = () => {
@@ -19,4 +19,4 @@ const UsersContainer = () => {
   );
 };
 
-export default UsersContainer;
+export default ModalContainer;

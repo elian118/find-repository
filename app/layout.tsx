@@ -25,10 +25,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-theme="myTheme" className="overflow-y-scroll">
+    <html lang="en" className="overflow-y-scroll">
       <body className={`${pretendard.variable} relative`}>
-        <Header />
         <ClientLayer>
+          <Header />
           {children}
           <Modal />
         </ClientLayer>
