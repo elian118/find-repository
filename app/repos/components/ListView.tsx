@@ -73,7 +73,7 @@ const ListView = () => {
       {repos.length > 0 && (
         <table className="table table table-pin-rows">
           <thead>
-            <tr className="bg-gray-100">
+            <tr className="bg-gray-100 text-gray-800">
               {headers.map((col) => (
                 <td
                   key={col.key}
