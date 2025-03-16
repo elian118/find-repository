@@ -1,10 +1,5 @@
-import UserDetails from '@/components/modal';
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return (
-    <main className="flex p-4 h-full w-full overflow-hidden">
-      홈
-      <UserDetails />
-    </main>
-  );
+  redirect('/repos');
 }

@@ -7,7 +7,7 @@ import {
   initModal,
   ModalState,
 } from '@/global-context';
-import { isMobile } from '@/utils';
+import { isMobile } from '@/hooks';
 
 const ClientLayer = ({ children }: { children: React.ReactNode }) => {
   const [isMobileDevice, setIsMobileDevice] = useState(false);
