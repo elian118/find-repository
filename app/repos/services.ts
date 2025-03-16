@@ -8,11 +8,8 @@ export const getRepositories = async (
   page: number,
   perPage?: number,
 ): Promise<Repo[]> => {
-  // let allRepos: Repo[] = [];
-  // let currentPage = page;
-
   const res = await callFetchApi({
-    url: `https://api.github.com/users/${username}/repos?page=${page ?? 1}&per_page=${perPage ?? 10}`,
+    url: `https://api.github.com/users/${username}/repos?page=${page ?? 1}&per_page=${perPage ?? 20}`,
     method: 'GET',
   });
 
@@ -22,5 +19,6 @@ export const getRepositories = async (
     description: e.description,
     stargazers_count: e.stargazers_count,
     updated_at: e.updated_at,
+    language: e.language,
   }));
 };

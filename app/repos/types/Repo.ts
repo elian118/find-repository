@@ -3,5 +3,6 @@ export type Repo = {
   name: string; // 리포지토리 이름
   description: string; // Description
   stargazers_count: number; // Star 개수
+  language: string; // 언어
   updated_at: string; // Last Updated 날짜
 };

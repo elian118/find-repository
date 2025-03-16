@@ -10,14 +10,18 @@ const SearchView = () => {
     useContext(ReposContext);
   const [page, setPage] = pageState;
   const [repos, setRepos] = reposState;
+  // const [langOpts, setLangOpts] = langOptsState;
   const [username, setUsername] = usernameState;
   const [, setIsLastPage] = isLastPageState;
+
+  const searchInput = useRef<HTMLInputElement>(null);
 
   const init = () => {
     setUsername('');
     setRepos([]);
     setPage(1);
     setIsLastPage(false);
+    // setLangOpts([]);
   };
 
   const search = async () => {
@@ -25,14 +29,32 @@ const SearchView = () => {
       const res = await getRepositories(username, page);
       setRepos(res);
       setPage(page + 1);
+      // setLangOpts([...new Set(res.map((e) => e.language))]);
     } else setRepos([]);
   };
-  const searchInput = useRef<HTMLInputElement>(null);
+
+  // const filter = (lang) => {
+  //   !!lang ? setRepos(repos.filter((e) => e.language === lang)) : search();
+  // };
 
   return (
     <div className="flex items-center justify-between gap-2 w-full">
-      <p>리포지토리({repos.length})</p>
-      <div className="flex items-center gap-2">
+      <div className="w-1/2 flex items-center gap-2">
+        <div className="w-30">리포지토리({repos.length})</div>
+        {/*<select*/}
+        {/*  className="w-40 select select-sm select-border"*/}
+        {/*  disabled={langOpts.length <= 0}*/}
+        {/*  onChange={(e) => filter(e.target.value)}*/}
+        {/*>*/}
+        {/*  <option value="">전체</option>*/}
+        {/*  {langOpts.map((lang, idx) => (*/}
+        {/*    <option key={idx} value={lang}>*/}
+        {/*      {lang}*/}
+        {/*    </option>*/}
+        {/*  ))}*/}
+        {/*</select>*/}
+      </div>
+      <div className="w-1/2 flex justify-end items-center gap-2">
         <Input
           ref={searchInput}
           type="text"

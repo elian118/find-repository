@@ -1,13 +1,15 @@
 'use client';
 
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { headerNms } from '@/app/repos/consts';
-import { Column } from '@/types';
+import { headers } from '@/app/repos/consts';
 import { convertToLocalDateTime } from '@/utils';
 import { ReposContext } from '@/app/repos/ReposContext';
 import { getRepositories } from '@/app/repos/services';
 import { Repo } from '@/app/repos/types/Repo';
+import IconBtn from '@/components/IconBtn';
 import ArrowDown from '@/public/icons/arrow-down';
+import ArrowUp from '@/public/icons/arrow-up';
+import ArrowPath from '@/public/icons/arrow-path';
 
 const ListView = () => {
   const { usernameState, pageState, reposState, isLoadingState, isLastPageState } =
@@ -15,28 +17,11 @@ const ListView = () => {
   const [username] = usernameState;
   const [page, setPage] = pageState;
   const [repos, setRepos] = reposState;
-  const [headers, setHeaders] = useState<Column[]>([]);
   const [isLoading, setIsLoading] = isLoadingState;
   const [isLastPage, setIsLastPage] = isLastPageState;
+  const [order, setOrder] = useState<'none' | 'asc' | 'desc'>('none');
 
   const trigger = useRef<HTMLDivElement>(null);
-
-  const update = async () => {
-    const newRepos = await getRepositories(username, page);
-    setRepos([...repos, ...newRepos]);
-  };
-
-  const init = () => {
-    const columns: Column[] = Object?.keys(repos[0]).map((key, idx) => ({
-      key: key,
-      name: headerNms[idx],
-    }));
-    setHeaders(columns);
-  };
-
-  useEffect(() => {
-    if (repos.length > 0) init();
-  }, [repos.length]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -45,6 +30,7 @@ const ListView = () => {
 
         const fetchData = (newRepos: Repo[]) => {
           setRepos([...repos, ...newRepos]);
+          sort(order);
           setPage((prev: number) => prev + 1);
         };
 
@@ -68,6 +54,21 @@ const ListView = () => {
     };
   }, [page]);
 
+  const sort = (orderBy: 'none' | 'asc' | 'desc') => {
+    setOrder(orderBy);
+    const sortedRepos = repos
+      .slice()
+      .sort((a, b) =>
+        a.updated_at > b.updated_at ? (orderBy ? 1 : -1) : orderBy ? -1 : 1,
+      );
+
+    setRepos(
+      orderBy === 'none'
+        ? sortedRepos.sort((a, b) => (a.name > b.name ? 1 : -1))
+        : sortedRepos,
+    );
+  };
+
   return (
     <div className="rounded-md h-160 overflow-y-scroll">
       {repos.length > 0 && (
@@ -77,15 +78,26 @@ const ListView = () => {
               {headers.map((col) => (
                 <td
                   key={col.key}
-                  className={
+                  className={`truncate ${
                     ['name', 'description'].includes(col.key)
-                      ? 'truncate min-w-40 max-w-60'
+                      ? 'min-w-40 max-w-60'
                       : col.key === 'updated_at'
-                        ? 'truncate w-36'
-                        : 'truncate w-24'
-                  }
+                        ? 'flex items-center gap-2 w-36'
+                        : 'w-24'
+                  }`}
                 >
                   <span className="truncate">{col.name}</span>
+                  <div className={`${col.key === 'updated_at' ? '' : 'hidden'}`}>
+                    {order === 'none' ? (
+                      <IconBtn icon={<ArrowDown />} onClick={() => sort('asc')} />
+                    ) : order === 'asc' ? (
+                      <IconBtn icon={<ArrowUp />} onClick={() => sort('desc')} />
+                    ) : order === 'desc' ? (
+                      <IconBtn icon={<ArrowPath />} onClick={() => sort('none')} />
+                    ) : (
+                      ''
+                    )}
+                  </div>
                 </td>
               ))}
             </tr>
@@ -113,10 +125,7 @@ const ListView = () => {
             ref={trigger}
             className={`flex justify-center items-center ${isLoading ? 'visible' : 'invisible'}`}
           >
-            <button
-              className="flex justify-center btn btn-sm btn-ghost btn-primary"
-              onClick={update}
-            >
+            <button className="flex justify-center btn btn-sm btn-ghost btn-primary">
               <ArrowDown />
             </button>
           </div>

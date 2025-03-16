@@ -1,1 +1,1 @@
-export * from './headerNms';
+export * from './headers';
