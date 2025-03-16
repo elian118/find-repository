@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: 'Foreedom | %s',
     default: 'Foreedom - 포리덤',
   },
-  description: '사용자를 찾습니다.',
+  description: '리포지토리',
 };
 
 export default function RootLayout({

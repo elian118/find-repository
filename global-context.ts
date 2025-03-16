@@ -26,4 +26,5 @@ export const initGlobalContext: GlobalContextType = {
   modalState: [{ isOpen: false }, () => {}],
 };
 
-export const GlobalContext = createContext(initGlobalContext);
+export const GlobalContext: React.Context<GlobalContextType> =
+  createContext(initGlobalContext);

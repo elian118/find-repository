@@ -1,6 +1,6 @@
 import { GitRequest } from '@/types';
 
-export const callGithubApi = async (req: GitRequest) => {
+export const callFetchApi = async (req: GitRequest) => {
   const { url, method, body } = req;
   const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
   if (!token) {
@@ -12,7 +12,8 @@ export const callGithubApi = async (req: GitRequest) => {
       method,
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-        'Content-Type': 'application/json',
+        // 'Content-Type': 'application/json',
+        Accept: 'application/vnd.github+json',
       },
       body: JSON.stringify(body),
     });

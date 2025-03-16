@@ -13,7 +13,7 @@ const Header = () => {
   const [isDark, setIsDark] = isDarkState;
   const pathname = usePathname();
   const menus = [
-    { name: '리포지토리 목록', path: '/repos' },
+    { name: '목록', path: '/repos' },
     { name: '상세조회', path: '/repo' },
   ];
 
@@ -21,15 +21,11 @@ const Header = () => {
     return pathname === path ? 'font-bold' : '';
   };
 
-  const changeTheme = (theme: boolean) => {
-    console.log('isDark', isDark);
-    console.log('isDark', theme);
-    setIsDark(theme);
-  };
+  const changeTheme = (theme: boolean) => setIsDark(theme);
 
   return (
-    <div className="w-full h-8 p-2 flex justify-between gap-4">
-      <div className="flex gap-2">
+    <div className="sticky top-0 left-0 z-10 w-full h-12 p-2 flex justify-between items-center gap-4 bg-info">
+      <div className="flex  gap-2">
         {menus.map((menu, idx) => (
           <Link key={idx} href={menu.path}>
             <span className={isCurrentPage(menu.path)}>{menu.name}</span>
