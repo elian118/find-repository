@@ -27,6 +27,8 @@ export const callFetchApi = async <T>(req: GitRequest): Promise<ApiResponse<T>> 
 
     const data = await response.json();
     return { data };
+    // error test
+    // return { error: { code: 500, message: '데이터 조작 오류입니다.' } };
   } catch (err: any) {
     console.error(err);
     return { error: { message: err.message } };

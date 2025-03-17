@@ -11,7 +11,7 @@ const Modal = () => {
     <dialog id="modal" className="modal modal-bottom sm:modal-middle">
       <div className="modal-box">
         <h3 className="font-bold text-lg">{title ?? ''}</h3>
-        <p className="py-4">{body}</p>
+        <div className="py-4">{body}</div>
         <div className="modal-action">
           {confirm && (
             <button

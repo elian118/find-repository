@@ -11,6 +11,7 @@ import ArrowDown from '@/public/icons/arrow-down';
 import ArrowUp from '@/public/icons/arrow-up';
 import ArrowPath from '@/public/icons/arrow-path';
 import LoadingView from '@/components/loading-view';
+import Link from 'next/link';
 
 const ListView = () => {
   const {
@@ -143,7 +144,14 @@ const ListView = () => {
               .map((repo, idx) => (
                 <tr className="hover:bg-sky-50" key={idx}>
                   <td>{repo.id}</td>
-                  <td>{repo.name}</td>
+                  <td>
+                    <Link
+                      className="hover:btn-link cursor-pointer"
+                      href={`/repo?username=${username}&repoName=${repo.name}`}
+                    >
+                      {repo.name}
+                    </Link>
+                  </td>
                   <td>{repo.description}</td>
                   <td>{'⭐️'.repeat(repo.stargazers_count)}</td>
                   <td>{convertToLocalDateTime(repo.updated_at)}</td>
