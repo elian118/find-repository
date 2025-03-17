@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import Input from '@/components/input';
 import { getRepositories } from '@/app/repos/services';
-import { ReposContext } from '@/app/repos/contexts/ReposContext';
+import { ReposContext } from '@/app/repos/contexts/repos-context';
 import { def } from '@/app/repos/consts';
 import { Option } from '@/types';
 
@@ -36,7 +36,7 @@ const SearchView = (props: ReposContainerProps) => {
       const { data } = await getRepositories(username, page);
       setRepos(data ?? []);
       setPage((prev) => prev + 1);
-    } else setRepos([]);
+    }
   };
 
   useEffect(() => {

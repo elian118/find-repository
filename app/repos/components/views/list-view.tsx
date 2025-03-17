@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { headers } from '@/app/repos/consts';
 import { convertToLocalDateTime } from '@/utils';
-import { ReposContext } from '@/app/repos/contexts/ReposContext';
+import { ReposContext } from '@/app/repos/contexts/repos-context';
 import { getRepositories } from '@/app/repos/services';
 import { Repo } from '@/app/repos/types/Repo';
 import IconBtn from '@/components/IconBtn';

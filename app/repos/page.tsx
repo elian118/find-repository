@@ -1,4 +1,4 @@
-import ReposContainer from '@/app/repos/components/ReposContainer';
+import ReposContainer from '@/app/repos/components/repos-container';
 import { getLangOpts } from '@/app/repos/services';
 import { def } from '@/app/repos/consts';
 
