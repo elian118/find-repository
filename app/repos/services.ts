@@ -11,6 +11,8 @@ export const getRepositories = async (
   page?: number,
   perPage?: number,
 ): Promise<ApiResponse<Repo[]>> => {
+  // delay test
+  // await new Promise((r) => setTimeout(r, 3000));
   const res = await callFetchApi<Repo[]>({
     url: `https://api.github.com/users/${username}/repos?page=${page ?? 1}&per_page=${perPage ?? def.perPage}`,
     method: 'GET',
@@ -30,6 +32,8 @@ export const getRepositories = async (
 };
 
 export const getLangOpts = async (username: string): Promise<ApiResponse<Option[]>> => {
+  // delay test
+  await new Promise((r) => setTimeout(r, 1400));
   const res = await callFetchApi<Repo[]>({
     url: `https://api.github.com/users/${username}/repos?per_page=${def.maxPerPage}`,
     method: 'GET',

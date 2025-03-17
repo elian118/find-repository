@@ -10,6 +10,7 @@ import IconBtn from '@/components/IconBtn';
 import ArrowDown from '@/public/icons/arrow-down';
 import ArrowUp from '@/public/icons/arrow-up';
 import ArrowPath from '@/public/icons/arrow-path';
+import LoadingView from '@/components/loading-view';
 
 const ListView = () => {
   const {
@@ -97,7 +98,7 @@ const ListView = () => {
           <thead>
             <tr className="bg-gray-100 text-gray-800">
               {headers.map((col) => (
-                <td
+                <th
                   key={col.key}
                   className={`truncate ${
                     ['name', 'description'].includes(col.key)
@@ -132,7 +133,7 @@ const ListView = () => {
                       )}
                     </div>
                   </div>
-                </td>
+                </th>
               ))}
             </tr>
           </thead>
@@ -157,14 +158,14 @@ const ListView = () => {
         </div>
       ) : (
         repos.length > 0 && (
-          <div
-            ref={trigger}
-            className={`flex justify-center items-center ${isLoading ? 'visible' : 'invisible'}`}
-          >
-            <button className="flex justify-center btn btn-sm btn-ghost btn-primary">
-              <ArrowDown />
-            </button>
-          </div>
+          <>
+            <div ref={trigger} className={`flex justify-center items-center invisible`}>
+              <button className="flex justify-center btn btn-sm btn-ghost btn-primary">
+                <ArrowDown />
+              </button>
+            </div>
+            {isLoading && <LoadingView />}
+          </>
         )
       )}
     </div>
