@@ -3,7 +3,7 @@
 import React, { useContext, useState } from 'react';
 import Moon from '@/public/icons/moon';
 import Sun from '@/public/icons/sun';
-import { useParams, usePathname } from 'next/navigation';
+import { useParams, usePathname, useSearchParams } from 'next/navigation';
 import IconBtn from '@/components/IconBtn';
 import { GlobalContext } from '@/global-context';
 import { Link, useRouter } from '@/i18n/navigation';
@@ -19,6 +19,7 @@ const Header = () => {
   const { replace } = useRouter();
   const [loc] = useState<string>(locale as string);
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const domain = pathname.split('/')[2];
 
   const isCurrentPage = (path) => {
@@ -28,7 +29,10 @@ const Header = () => {
   const changeTheme = (theme: boolean) => setIsDark(theme);
 
   const changeLang = (lang: string) => {
-    replace(`/${domain}`, { locale: lang });
+    replace(
+      `/${domain}?username=${searchParams.get('username')}&repoName=${searchParams.get('repoName')}`,
+      { locale: lang },
+    );
   };
 
   return (

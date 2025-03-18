@@ -1,8 +1,8 @@
-export const localeCodes = ['ko', 'en'];
+export const localeCodes = ['kr', 'en'];
 
 export const locales = [
-  { code: 'ko', name: '한국어' },
+  { code: 'kr', name: '한국어' },
   { code: 'en', name: 'English' },
 ];
 
-export const defaultLocale = 'ko';
+export const defaultLocale = 'kr';

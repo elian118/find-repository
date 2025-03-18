@@ -1,19 +1,23 @@
+'use client';
+
 import React from 'react';
 import { def, headers } from '@/app/[locale]/repos/consts';
+import { useTranslations } from 'next-intl';
 
 const Loading = () => {
+  const t = useTranslations('SearchView');
   return (
     <div className="flex flex-col gap-2 p-4 w-full mainContainer">
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between gap-2 w-full">
           <div className="w-1/2 flex items-center gap-2">
-            <div className="w-30 flex items-center gap-2">리포지토리</div>
+            <div className="w-30 flex items-center gap-2">{t('repository')}</div>
             <div className="w-40 h-8 skeleton" />
           </div>
           <div className="w-1/2 flex justify-end items-center gap-2">
             <div className="w-40 h-8 skeleton" />
-            <button className="btn btn-sm btn-primary">검색</button>
-            <button className="btn btn-sm btn-primary">초기화</button>
+            <button className="btn btn-sm btn-primary">{t('search')}</button>
+            <button className="btn btn-sm btn-primary">{t('init')}</button>
           </div>
         </div>
         <div className="rounded-md h-160 overflow-y-scroll">

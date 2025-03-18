@@ -19,6 +19,7 @@ const SearchView = (props: ReposContainerProps) => {
   const { usernameState, pageState, reposState, isLastPageState, filterState } =
     useContext(ReposContext);
   const { openModal } = useModal();
+  const te = useTranslations('error');
   const t = useTranslations('SearchView');
 
   const [page, setPage] = pageState;
@@ -46,7 +47,7 @@ const SearchView = (props: ReposContainerProps) => {
         setPage((prev) => prev + 1);
       } catch (error: any) {
         console.error(error.message);
-        openModal({ title: '오류', body: error.message });
+        openModal({ title: te('error'), body: error.message });
       }
     }
   };
@@ -81,7 +82,7 @@ const SearchView = (props: ReposContainerProps) => {
           disabled={repos.length <= 0}
           onChange={(e) => setFilter(e.target.value)}
         >
-          <option value="">전체</option>
+          <option value="">{t('all')}</option>
           {langOpts.map((lang, idx) => (
             <option key={idx} value={lang.code}>
               {lang.name}
@@ -99,7 +100,7 @@ const SearchView = (props: ReposContainerProps) => {
           onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) =>
             e.keyCode === 13 && search()
           }
-          placeholder="사용자 아이디"
+          placeholder={t('userId')}
         />
         <button ref={searchBtn} className="btn btn-sm btn-primary" onClick={search}>
           {t('search')}
