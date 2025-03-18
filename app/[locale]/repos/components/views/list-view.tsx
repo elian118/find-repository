@@ -155,25 +155,26 @@ const ListView = () => {
             </tr>
           </thead>
           <tbody>
-            {repos
-              .filter((e) => (!!lang ? e.language === lang : true))
-              .map((repo, idx) => (
-                <tr className="hover:bg-sky-50" key={idx}>
-                  <td>{repo.id}</td>
-                  <td>
-                    <Link
-                      className="hover:btn-link cursor-pointer"
-                      href={`/repo?username=${username}&repoName=${repo.name}`}
-                      locale={locale as string}
-                    >
-                      {repo.name}
-                    </Link>
-                  </td>
-                  <td>{repo.description}</td>
-                  <td>{'⭐️'.repeat(repo.stargazers_count)}</td>
-                  <td>{convertToLocalDateTime(repo.updated_at)}</td>
-                </tr>
-              ))}
+            {repos.map((repo, idx) => (
+              <tr
+                className={`hover:bg-sky-50 ${!lang || repo.language === lang ? '' : 'hidden'} `}
+                key={idx}
+              >
+                <td>{repo.id}</td>
+                <td>
+                  <Link
+                    className="hover:btn-link cursor-pointer"
+                    href={`/repo?username=${username}&repoName=${repo.name}`}
+                    locale={locale as string}
+                  >
+                    {repo.name}
+                  </Link>
+                </td>
+                <td>{repo.description}</td>
+                <td>{'⭐️'.repeat(repo.stargazers_count)}</td>
+                <td>{convertToLocalDateTime(repo.updated_at)}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       )}

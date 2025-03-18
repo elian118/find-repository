@@ -26,7 +26,7 @@ const SearchView = (props: ReposContainerProps) => {
   const [repos, setRepos] = reposState;
   const [username, setUsername] = usernameState;
   const [, setIsLastPage] = isLastPageState;
-  const [, setFilter] = filterState;
+  const [lang, setFilter] = filterState;
 
   const searchInput = useRef<HTMLInputElement>(null);
   const searchBtn = useRef<HTMLButtonElement>(null);
@@ -75,7 +75,8 @@ const SearchView = (props: ReposContainerProps) => {
     <div className="flex items-center justify-between gap-2 w-full">
       <div className="w-1/2 flex items-center gap-2">
         <div className="w-30">
-          {t('repository')}({repos?.length ?? 0})
+          {t('repository')}(
+          {repos?.filter((e) => (!!lang ? e.language === lang : true)).length ?? 0})
         </div>
         <select
           className="w-40 select select-sm select-border"

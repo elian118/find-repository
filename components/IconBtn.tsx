@@ -8,7 +8,7 @@ type IconBtnProps = {
 const IconBtn = (props: IconBtnProps) => {
   const { icon, onClick } = props;
   return (
-    <button className="btn btn-sm btn-ghost btn-primary" onClick={onClick}>
+    <button className="btn-ghost btn-primary hover:cursor-pointer" onClick={onClick}>
       {icon}
     </button>
   );
