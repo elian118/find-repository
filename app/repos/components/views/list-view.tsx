@@ -12,6 +12,8 @@ import ArrowUp from '@/public/icons/arrow-up';
 import ArrowPath from '@/public/icons/arrow-path';
 import LoadingView from '@/components/loading-view';
 import Link from 'next/link';
+import { useAsync } from '@/hooks/useAsync';
+import { useModal } from '@/hooks';
 
 const ListView = () => {
   const {
@@ -30,6 +32,7 @@ const ListView = () => {
   const [lang] = filterState;
   const [order, setOrder] = useState<'none' | 'asc' | 'desc'>('none');
   const [targetKey, setTargetKey] = useState<string>('updated_at');
+  const { openModal } = useModal();
 
   const trigger = useRef<HTMLDivElement>(null);
 
@@ -60,7 +63,7 @@ const ListView = () => {
     );
   };
 
-  useEffect(() => {
+  const [error, resetError] = useAsync(async () => {
     const observer = new IntersectionObserver(
       async (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
         const element = entries[0];
@@ -87,6 +90,14 @@ const ListView = () => {
       observer.disconnect();
     };
   }, [page]);
+
+  useEffect(() => {
+    if (!!error) {
+      console.error(error.message);
+      openModal({ title: '오류', body: error.message });
+    }
+    resetError();
+  }, [error]);
 
   useEffect(() => {
     sort(order, targetKey);

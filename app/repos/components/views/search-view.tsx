@@ -6,6 +6,8 @@ import { getRepositories } from '@/app/repos/services';
 import { ReposContext } from '@/app/repos/contexts/repos-context';
 import { def } from '@/app/repos/consts';
 import { Option } from '@/types';
+import { useAsync } from '@/hooks/useAsync';
+import { useModal } from '@/hooks';
 
 type ReposContainerProps = {
   langOpts: Option[];
@@ -15,6 +17,8 @@ const SearchView = (props: ReposContainerProps) => {
   const { langOpts } = props;
   const { usernameState, pageState, reposState, isLastPageState, filterState } =
     useContext(ReposContext);
+  const { openModal } = useModal();
+
   const [page, setPage] = pageState;
   const [repos, setRepos] = reposState;
   const [username, setUsername] = usernameState;
@@ -33,15 +37,29 @@ const SearchView = (props: ReposContainerProps) => {
   const search = async () => {
     if (username.length > 0) {
       init();
-      const { data } = await getRepositories(username, page);
-      setRepos(data ?? []);
-      setPage((prev) => prev + 1);
+      try {
+        const { data } = await getRepositories(username, page);
+        setRepos(data ?? []);
+        setPage((prev) => prev + 1);
+      } catch (error: any) {
+        console.error(error.message);
+        openModal({ title: '오류', body: error.message });
+      }
     }
   };
 
+  const [error, resetError] = useAsync(async () => {
+    if (username === '') setUsername(def.username);
+    await search();
+  }, [username]);
+
   useEffect(() => {
-    setUsername(def.username);
-  }, []);
+    if (!!error) {
+      console.error(error.message);
+      openModal({ title: '오류', body: error.message });
+    }
+    resetError();
+  }, [error]);
 
   return (
     <div className="flex items-center justify-between gap-2 w-full">

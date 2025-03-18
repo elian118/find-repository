@@ -18,6 +18,9 @@ export const getRepositories = async (
     method: 'GET',
   });
 
+  // error test
+  // throw new Error('데이터 조작 오류입니다.');
+
   return {
     ...res,
     data: res.data?.map((e) => ({

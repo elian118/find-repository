@@ -1,5 +1,5 @@
 import React from 'react';
-import { headers } from '@/app/repos/consts';
+import { def, headers } from '@/app/repos/consts';
 
 const Loading = () => {
   return (
@@ -39,7 +39,7 @@ const Loading = () => {
               </tr>
             </thead>
             <tbody>
-              {[...Array(5)].map((_, idx) => (
+              {[...Array(def.perPage)].map((_, idx) => (
                 <tr key={idx}>
                   {headers.map((col, cIdx) => (
                     <td

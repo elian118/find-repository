@@ -6,7 +6,6 @@ import React from 'react';
 
 export default async function Repos() {
   const { data, error } = await getLangOpts(def.username);
-
   return (
     <main className="flex flex-col gap-2 p-4 w-full mainContainer">
       <ReposContainer langOpts={data ?? []} />
