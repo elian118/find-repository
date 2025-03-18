@@ -28,6 +28,7 @@ const SearchView = (props: ReposContainerProps) => {
   const [, setFilter] = filterState;
 
   const searchInput = useRef<HTMLInputElement>(null);
+  const searchBtn = useRef<HTMLButtonElement>(null);
 
   const init = () => {
     setRepos([]);
@@ -51,9 +52,15 @@ const SearchView = (props: ReposContainerProps) => {
   };
 
   const [error, resetError] = useAsync(async () => {
-    if (username === '') setUsername(def.username);
-    await search();
-  }, [username]);
+    if (repos.length <= 0) {
+      await search();
+    }
+    // searchBtn.current?.click();
+  }, [username, repos.length]);
+
+  useEffect(() => {
+    setUsername(def.username);
+  }, []);
 
   useEffect(() => {
     if (!!error) {
@@ -94,7 +101,7 @@ const SearchView = (props: ReposContainerProps) => {
           }
           placeholder="사용자 아이디"
         />
-        <button className="btn btn-sm btn-primary" onClick={search}>
+        <button ref={searchBtn} className="btn btn-sm btn-primary" onClick={search}>
           {t('search')}
         </button>
         <button

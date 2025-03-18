@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: '상세 조회',
-  description: '저장소',
+  title: '리포지토리 목록',
+  description: '특정 사용자의 리포지토리 목록을 조회합니다.',
   authors: [{ name: 'elian118', url: 'https://github.com/elian118' }],
 };
 

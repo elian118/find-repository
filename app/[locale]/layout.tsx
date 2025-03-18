@@ -16,8 +16,8 @@ const pretendard = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: 'Foreedom | %s',
-    default: 'Foreedom - 포리덤',
+    template: 'Github | %s',
+    default: 'Github',
   },
   description: '리포지토리',
 };

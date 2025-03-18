@@ -36,6 +36,7 @@ const ListView = () => {
   const [targetKey, setTargetKey] = useState<string>('updated_at');
   const { openModal } = useModal();
   const { locale } = useParams();
+  const te = useTranslations('error');
   const t = useTranslations('ListView');
 
   const trigger = useRef<HTMLDivElement>(null);
@@ -98,7 +99,7 @@ const ListView = () => {
   useEffect(() => {
     if (!!error) {
       console.error(error.message);
-      openModal({ title: '오류', body: error.message });
+      openModal({ title: te('error'), body: error.message });
     }
     resetError();
   }, [error]);
@@ -178,7 +179,7 @@ const ListView = () => {
       )}
       {isLastPage ? (
         <div className="my-8 flex justify-center items-center">
-          <span>모든 데이터를 불러왔습니다.</span>
+          <span>{t('importedAllTheData')}</span>
         </div>
       ) : (
         repos.length > 0 && (
