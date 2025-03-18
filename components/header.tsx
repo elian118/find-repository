@@ -9,12 +9,14 @@ import { GlobalContext } from '@/global-context';
 import { Link, useRouter } from '@/i18n/navigation';
 import { locales } from '@/consts/locales';
 import { menus } from '@/consts/menus';
+import { useTranslations } from 'next-intl';
 
 const Header = () => {
   const { isDarkState } = useContext(GlobalContext);
+  const [isDark, setIsDark] = isDarkState;
+  const t = useTranslations('Header');
   const { locale } = useParams();
   const { replace } = useRouter();
-  const [isDark, setIsDark] = isDarkState;
   const [loc] = useState<string>(locale as string);
   const pathname = usePathname();
   const domain = pathname.split('/')[2];
@@ -34,7 +36,7 @@ const Header = () => {
       <div className="flex  gap-2">
         {menus.map((menu, idx) => (
           <Link key={idx} href={menu.path} locale={locale as string}>
-            <span className={isCurrentPage(menu.path)}>{menu.name}</span>
+            <span className={isCurrentPage(menu.path)}>{t(menu.intlKey)}</span>
           </Link>
         ))}
       </div>

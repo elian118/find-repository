@@ -15,6 +15,7 @@ import { useAsync } from '@/hooks/useAsync';
 import { useModal } from '@/hooks';
 import { Link } from '@/i18n/navigation';
 import { useParams } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 const ListView = () => {
   const {
@@ -35,6 +36,7 @@ const ListView = () => {
   const [targetKey, setTargetKey] = useState<string>('updated_at');
   const { openModal } = useModal();
   const { locale } = useParams();
+  const t = useTranslations('ListView');
 
   const trigger = useRef<HTMLDivElement>(null);
 
@@ -123,7 +125,7 @@ const ListView = () => {
                   }`}
                 >
                   <div className="flex items-center gap-2">
-                    <span className="truncate">{col.name}</span>
+                    <span className="truncate">{t(col.intlKey)}</span>
                     <div
                       className={`${['updated_at', 'stargazers_count'].includes(col.key) ? '' : 'hidden'}`}
                     >

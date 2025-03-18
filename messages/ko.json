@@ -28,6 +28,11 @@
     "all": "전체"
   },
   "ListView": {
-    "importedAllTheData": "모든 데이터를 불러왔습니다."
+    "importedAllTheData": "모든 데이터를 불러왔습니다.",
+    "id": "아이디",
+    "name": "이름",
+    "description": "설명",
+    "starPoints": "별점",
+    "updatedDate": "수정일자"
   }
 }

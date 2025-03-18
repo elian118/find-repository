@@ -8,6 +8,7 @@ import { def } from '@/app/[locale]/repos/consts';
 import { Option } from '@/types';
 import { useAsync } from '@/hooks/useAsync';
 import { useModal } from '@/hooks';
+import { useTranslations } from 'next-intl';
 
 type ReposContainerProps = {
   langOpts: Option[];
@@ -18,6 +19,7 @@ const SearchView = (props: ReposContainerProps) => {
   const { usernameState, pageState, reposState, isLastPageState, filterState } =
     useContext(ReposContext);
   const { openModal } = useModal();
+  const t = useTranslations('SearchView');
 
   const [page, setPage] = pageState;
   const [repos, setRepos] = reposState;
@@ -64,7 +66,9 @@ const SearchView = (props: ReposContainerProps) => {
   return (
     <div className="flex items-center justify-between gap-2 w-full">
       <div className="w-1/2 flex items-center gap-2">
-        <div className="w-30">리포지토리({repos?.length ?? 0})</div>
+        <div className="w-30">
+          {t('repository')}({repos?.length ?? 0})
+        </div>
         <select
           className="w-40 select select-sm select-border"
           disabled={repos.length <= 0}
@@ -91,7 +95,7 @@ const SearchView = (props: ReposContainerProps) => {
           placeholder="사용자 아이디"
         />
         <button className="btn btn-sm btn-primary" onClick={search}>
-          검색
+          {t('search')}
         </button>
         <button
           className="btn btn-sm btn-primary"
@@ -100,7 +104,7 @@ const SearchView = (props: ReposContainerProps) => {
             init();
           }}
         >
-          초기화
+          {t('init')}
         </button>
       </div>
     </div>

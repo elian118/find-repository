@@ -28,6 +28,11 @@
     "all": "All"
   },
   "ListView": {
-    "importedAllTheData": "Imported all the data."
+    "importedAllTheData": "Imported all the data.",
+    "id": "Id",
+    "name": "Name",
+    "description": "Description",
+    "starPoints": "Star points",
+    "updatedDate": "Updated date"
   }
 }
