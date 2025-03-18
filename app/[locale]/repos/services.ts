@@ -1,8 +1,8 @@
 'use server';
 
 import { callFetchApi } from '@/utils';
-import { Repo } from '@/app/repos/types/Repo';
-import { def } from '@/app/repos/consts';
+import { Repo } from '@/app/[locale]/repos/types/Repo';
+import { def } from '@/app/[locale]/repos/consts';
 import { Option } from '@/types';
 import { ApiResponse } from '@/types/ApiResponse';
 

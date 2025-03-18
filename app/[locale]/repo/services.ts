@@ -1,7 +1,7 @@
 'use server';
 
 import { callFetchApi } from '@/utils';
-import { RepoDetail } from '@/app/repo/types/repo-detail';
+import { RepoDetail } from '@/app/[locale]/repo/types/repo-detail';
 
 export const getRepository = async (username: string, repoName: string) => {
   const res = await callFetchApi<RepoDetail>({

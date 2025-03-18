@@ -1,6 +1,6 @@
-import ReposContainer from '@/app/repos/components/repos-container';
-import { getLangOpts } from '@/app/repos/services';
-import { def } from '@/app/repos/consts';
+import ReposContainer from '@/app/[locale]/repos/components/repos-container';
+import { getLangOpts } from '@/app/[locale]/repos/services';
+import { def } from '@/app/[locale]/repos/consts';
 import React from 'react';
 import ModalContainer from '@/components/modal-container';
 

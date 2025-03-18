@@ -3,7 +3,11 @@
     "error": "Error",
     "noAnswer": "No answer",
     "githubTokenNotFound": "Github token not found",
-    "dataManipulationError.": "data manipulation error"
+    "dataManipulationError": "data manipulation error"
+  },
+  "Header": {
+    "list": "List",
+    "detail": "Detail"
   },
   "Repo": {
     "repoDetail": "Repo detail",
@@ -24,6 +28,6 @@
     "all": "All"
   },
   "ListView": {
-    "importedAllTheData":"Imported all the data."
+    "importedAllTheData": "Imported all the data."
   }
 }

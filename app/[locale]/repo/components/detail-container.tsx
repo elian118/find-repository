@@ -1,12 +1,14 @@
 import React from 'react';
-import Link from 'next/link';
-import { RepoDetail } from '@/app/repo/types/repo-detail';
+import { RepoDetail } from '@/app/[locale]/repo/types/repo-detail';
+import { Link } from '@/i18n/navigation';
 
 type DetailContainerProps = {
   repo: RepoDetail;
+  locale: string;
 };
 
 const DetailContainer = (props: DetailContainerProps) => {
+  const { locale } = props;
   const { name, description, stargazers_count, language, open_issues_count, html_url } =
     props.repo;
 
@@ -35,7 +37,7 @@ const DetailContainer = (props: DetailContainerProps) => {
         </div>
         <div className="flex items-center gap-2">
           <div className="font-bold w-24">url</div>
-          <Link href={html_url} target="_blank" rel="noopener noreferrer">
+          <Link href={html_url} target="_blank" rel="noopener noreferrer" locale={locale}>
             <span className="hover:btn-link cursor-pointer">{html_url}</span>
           </Link>
         </div>

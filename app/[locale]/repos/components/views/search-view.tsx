@@ -2,9 +2,9 @@
 
 import React, { useContext, useEffect, useRef } from 'react';
 import Input from '@/components/input';
-import { getRepositories } from '@/app/repos/services';
-import { ReposContext } from '@/app/repos/contexts/repos-context';
-import { def } from '@/app/repos/consts';
+import { getRepositories } from '@/app/[locale]/repos/services';
+import { ReposContext } from '@/app/[locale]/repos/contexts/repos-context';
+import { def } from '@/app/[locale]/repos/consts';
 import { Option } from '@/types';
 import { useAsync } from '@/hooks/useAsync';
 import { useModal } from '@/hooks';

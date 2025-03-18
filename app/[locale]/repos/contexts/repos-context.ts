@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { Repo } from '@/app/repos/types/Repo';
+import { Repo } from '@/app/[locale]/repos/types/Repo';
 
 export type ReposContextType = {
   usernameState: [username: string, (val: string) => void];

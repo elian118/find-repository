@@ -1,5 +1,5 @@
 import React from 'react';
-import { def, headers } from '@/app/repos/consts';
+import { def, headers } from '@/app/[locale]/repos/consts';
 
 const Loading = () => {
   return (

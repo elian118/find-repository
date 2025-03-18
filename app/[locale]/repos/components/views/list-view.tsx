@@ -1,19 +1,20 @@
 'use client';
 
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { headers } from '@/app/repos/consts';
+import { headers } from '@/app/[locale]/repos/consts';
 import { convertToLocalDateTime } from '@/utils';
-import { ReposContext } from '@/app/repos/contexts/repos-context';
-import { getRepositories } from '@/app/repos/services';
-import { Repo } from '@/app/repos/types/Repo';
+import { ReposContext } from '@/app/[locale]/repos/contexts/repos-context';
+import { getRepositories } from '@/app/[locale]/repos/services';
+import { Repo } from '@/app/[locale]/repos/types/Repo';
 import IconBtn from '@/components/IconBtn';
 import ArrowDown from '@/public/icons/arrow-down';
 import ArrowUp from '@/public/icons/arrow-up';
 import ArrowPath from '@/public/icons/arrow-path';
 import LoadingView from '@/components/loading-view';
-import Link from 'next/link';
 import { useAsync } from '@/hooks/useAsync';
 import { useModal } from '@/hooks';
+import { Link } from '@/i18n/navigation';
+import { useParams } from 'next/navigation';
 
 const ListView = () => {
   const {
@@ -33,6 +34,7 @@ const ListView = () => {
   const [order, setOrder] = useState<'none' | 'asc' | 'desc'>('none');
   const [targetKey, setTargetKey] = useState<string>('updated_at');
   const { openModal } = useModal();
+  const { locale } = useParams();
 
   const trigger = useRef<HTMLDivElement>(null);
 
@@ -159,6 +161,7 @@ const ListView = () => {
                     <Link
                       className="hover:btn-link cursor-pointer"
                       href={`/repo?username=${username}&repoName=${repo.name}`}
+                      locale={locale as string}
                     >
                       {repo.name}
                     </Link>

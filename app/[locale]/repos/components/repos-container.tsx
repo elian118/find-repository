@@ -1,10 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import SearchView from '@/app/repos/components/views/search-view';
-import ListView from '@/app/repos/components/views/list-view';
-import { Repo } from '@/app/repos/types/Repo';
-import { ReposContext, ReposContextType } from '@/app/repos/contexts/repos-context';
+import SearchView from '@/app/[locale]/repos/components/views/search-view';
+import ListView from '@/app/[locale]/repos/components/views/list-view';
+import { Repo } from '@/app/[locale]/repos/types/Repo';
+import {
+  ReposContext,
+  ReposContextType,
+} from '@/app/[locale]/repos/contexts/repos-context';
 import { Option } from '@/types';
 
 type ReposContainerProps = {
