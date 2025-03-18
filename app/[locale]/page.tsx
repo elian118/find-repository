@@ -1,5 +1,6 @@
-import { redirect } from 'next/navigation';
+import { redirect } from '@/i18n/navigation';
+import { defaultLocale } from '@/consts/locales';
 
 export default function Home() {
-  redirect('/ko/repos');
+  redirect({ href: '/repos', locale: defaultLocale });
 }
