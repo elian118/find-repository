@@ -1,0 +1,29 @@
+{
+  "error": {
+    "error": "오류",
+    "noAnswer": "응답이 없습니다.",
+    "githubTokenNotFound": "깃허브 토큰을 찾을 수 없습니다.",
+    "dataManipulationError.": "데이터 조작 오류입니다."
+  },
+  "Repo": {
+    "repoDetail": "리포지토리 정보",
+    "toList": "목록으로"
+  },
+  "DetailContainer": {
+    "name": "이름",
+    "description": "설명",
+    "starCounts": "별점 수",
+    "mainLanguage": "주 언어",
+    "issueCounts": "이슈 수"
+  },
+  "SearchView": {
+    "repository": "리포지토리",
+    "userId": "사용자 아이디",
+    "search": "검색",
+    "init": "초기화",
+    "all": "전체"
+  },
+  "ListView": {
+    "importedAllTheData":"모든 데이터를 불러왔습니다."
+  }
+}

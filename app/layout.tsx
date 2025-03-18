@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
+import { NextIntlClientProvider } from 'next-intl';
+import { getLocale } from 'next-intl/server';
 import Header from '@/components/header';
 import ClientLayer from '@/components/client-layer';
 import React from 'react';
@@ -19,19 +21,22 @@ export const metadata: Metadata = {
   description: '리포지토리',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
   return (
-    <html lang="en" className="overflow-y-scroll">
+    <html lang={locale} className="overflow-y-scroll">
       <body className={`${pretendard.variable} relative`}>
-        <ClientLayer>
-          <Header />
-          {children}
-          <Modal />
-        </ClientLayer>
+        <NextIntlClientProvider>
+          <ClientLayer>
+            <Header />
+            {children}
+            <Modal />
+          </ClientLayer>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

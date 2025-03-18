@@ -1,0 +1,29 @@
+{
+  "error": {
+    "error": "Error",
+    "noAnswer": "No answer",
+    "githubTokenNotFound": "Github token not found",
+    "dataManipulationError.": "data manipulation error"
+  },
+  "Repo": {
+    "repoDetail": "Repo detail",
+    "toList": "To list"
+  },
+  "DetailContainer": {
+    "name": "Name",
+    "description": "Description",
+    "starCounts": "Star counts",
+    "mainLanguage": "Main language",
+    "issueCounts": "Issue counts"
+  },
+  "SearchView": {
+    "repository": "Repository",
+    "userId": "User id",
+    "search": "Search",
+    "init": "Initialization",
+    "all": "All"
+  },
+  "ListView": {
+    "importedAllTheData":"Imported all the data."
+  }
+}
