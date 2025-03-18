@@ -1,28 +1,30 @@
 import ReposContainer from '@/app/repos/components/repos-container';
 import { getLangOpts } from '@/app/repos/services';
 import { def } from '@/app/repos/consts';
-import ModalContainer from '@/components/modal-container';
 import React from 'react';
+import ModalContainer from '@/components/modal-container';
 
 export default async function Repos() {
-  const { data, error } = await getLangOpts(def.username);
-  return (
-    <main className="flex flex-col gap-2 p-4 w-full mainContainer">
-      <ReposContainer langOpts={data ?? []} />
-      {error && (
+  try {
+    const { data } = await getLangOpts(def.username);
+    return (
+      <main className="flex flex-col gap-2 p-4 w-full mainContainer">
+        <ReposContainer langOpts={data ?? []} />
+      </main>
+    );
+  } catch (error: any) {
+    console.error(error.message || error);
+    return (
+      <main className="flex flex-col gap-2 p-4 w-full mainContainer">
         <ModalContainer
           title="오류"
           body={
             <div>
-              <p>
-                오류코드: {error.code}
-                <br />
-                {error?.message}
-              </p>
+              <p>{error.message || error}</p>
             </div>
           }
         />
-      )}
-    </main>
-  );
+      </main>
+    );
+  }
 }

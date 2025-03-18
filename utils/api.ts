@@ -30,7 +30,7 @@ export const callFetchApi = async <T>(req: GitRequest): Promise<ApiResponse<T>> 
     const data = await response.json();
     return { data };
   } catch (err: any) {
-    console.error(err);
-    throw new Error(err);
+    console.error(err.message || err);
+    throw new Error(err.message || err);
   }
 };
