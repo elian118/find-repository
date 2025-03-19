@@ -6,8 +6,7 @@ import { getRepositories } from '@/app/[locale]/repos/services';
 import { ReposContext } from '@/app/[locale]/repos/contexts/repos-context';
 import { def } from '@/app/[locale]/repos/consts';
 import { Option } from '@/types';
-import { useAsync } from '@/hooks/useAsync';
-import { useModal } from '@/hooks';
+import { useModal, useAsync } from '@/hooks';
 import { useTranslations } from 'next-intl';
 
 type ReposContainerProps = {
@@ -39,10 +38,10 @@ const SearchView = (props: ReposContainerProps) => {
   };
 
   const search = async () => {
-    if (username.length > 0) {
+    if (username && username.length > 0) {
       init();
       try {
-        const { data } = await getRepositories(username, page);
+        const { data } = await getRepositories(username ?? '', page);
         setRepos(data ?? []);
         setPage((prev) => prev + 1);
       } catch (error: any) {
@@ -96,7 +95,7 @@ const SearchView = (props: ReposContainerProps) => {
           ref={searchInput}
           type="text"
           name="username"
-          value={username}
+          value={username ?? ''}
           onChange={(e) => setUsername(e.target.value)}
           onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) =>
             e.keyCode === 13 && search()

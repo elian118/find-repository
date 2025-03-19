@@ -15,7 +15,7 @@ type ReposContainerProps = {
 };
 
 const ReposContainer = (props: ReposContainerProps) => {
-  const [username, setUsername] = useState<string>('');
+  const [username, setUsername] = useState<string | null>(null);
   const [repos, setRepos] = useState<Repo[]>([]);
   const [page, setPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(false);

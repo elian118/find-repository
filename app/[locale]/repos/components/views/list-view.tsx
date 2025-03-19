@@ -11,8 +11,7 @@ import ArrowDown from '@/public/icons/arrow-down';
 import ArrowUp from '@/public/icons/arrow-up';
 import ArrowPath from '@/public/icons/arrow-path';
 import LoadingView from '@/components/loading-view';
-import { useAsync } from '@/hooks/useAsync';
-import { useModal } from '@/hooks';
+import { useAsync, useModal } from '@/hooks';
 import { Link } from '@/i18n/navigation';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
@@ -73,11 +72,10 @@ const ListView = () => {
       async (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
         const element = entries[0];
 
-        if (element.isIntersecting && trigger.current) {
+        if (element.isIntersecting && trigger.current && username) {
           observer.unobserve(trigger.current);
           setIsLoading(true);
           const { data } = await getRepositories(username, page);
-          console.log(data);
           const newRepos = data ?? [];
           // eslint-disable-next-line @typescript-eslint/no-unused-expressions
           newRepos.length > 0 ? fetchData(newRepos) : setIsLastPage(true);

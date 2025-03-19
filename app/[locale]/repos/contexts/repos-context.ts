@@ -2,7 +2,7 @@ import React, { createContext } from 'react';
 import { Repo } from '@/app/[locale]/repos/types/Repo';
 
 export type ReposContextType = {
-  usernameState: [username: string, (val: string) => void];
+  usernameState: [username: string | null, (val: string | null) => void];
   reposState: [repos: Repo[], setRepos: (val: Repo[]) => void];
   pageState: [page: number, setPage: (val: (prev: number) => number) => void];
   isLoadingState: [isLoading: boolean, setIsLoading: (val: boolean) => void];
@@ -11,7 +11,7 @@ export type ReposContextType = {
 };
 
 export const initRepostContext: ReposContextType = {
-  usernameState: ['', () => {}],
+  usernameState: [null, () => {}],
   pageState: [1, () => {}],
   reposState: [[], () => {}],
   isLoadingState: [false, () => {}],
