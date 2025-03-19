@@ -1,6 +1,8 @@
 {
   "name": "find-user",
   "version": "0.1.0",
+  "description": "깃허브 REST API를 활용한 리포지토리 검색 서비스 구현",
+  "author": "김광회 <postelian@gmail.com> (https://github.com/elian118)",
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
