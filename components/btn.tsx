@@ -1,7 +1,7 @@
 import React from 'react';
 import Spinner from '@/public/icons/spinner';
 
-type BtnProps = {
+export type BtnProps = {
   isLoading: boolean;
   children: React.ReactNode;
   ref?: React.Ref<HTMLButtonElement>;

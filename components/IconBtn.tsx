@@ -1,6 +1,6 @@
 import React from 'react';
 
-type IconBtnProps = {
+export type IconBtnProps = {
   icon: React.ReactNode;
   onClick?: () => void;
 };
