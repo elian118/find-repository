@@ -1,10 +1,10 @@
 'use server';
 
-import { callFetchApi } from '@/utils';
+import { callAxiosApi } from '@/utils';
 import { RepoDetail } from '@/app/[locale]/repo/types/repo-detail';
 
 export const getRepository = async (username: string, repoName: string) => {
-  const res = await callFetchApi<RepoDetail>({
+  const res = await callAxiosApi<RepoDetail>({
     url: `https://api.github.com/repos/${username}/${repoName}`,
     method: 'GET',
   });

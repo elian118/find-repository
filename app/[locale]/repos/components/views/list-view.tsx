@@ -77,6 +77,7 @@ const ListView = () => {
           observer.unobserve(trigger.current);
           setIsLoading(true);
           const { data } = await getRepositories(username, page);
+          console.log(data);
           const newRepos = data ?? [];
           // eslint-disable-next-line @typescript-eslint/no-unused-expressions
           newRepos.length > 0 ? fetchData(newRepos) : setIsLastPage(true);

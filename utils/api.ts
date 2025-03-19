@@ -2,8 +2,9 @@
 
 import { GitRequest } from '@/types';
 import { ApiResponse } from '@/types/ApiResponse';
+import axios, { AxiosRequestConfig } from 'axios';
 
-export const callFetchApi = async <T>(req: GitRequest): Promise<ApiResponse<T>> => {
+export const callAxiosApi = async <T>(req: GitRequest): Promise<ApiResponse<T>> => {
   const { url, method, body } = req;
   const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
 
@@ -12,23 +13,36 @@ export const callFetchApi = async <T>(req: GitRequest): Promise<ApiResponse<T>> 
   }
 
   try {
-    const response = await fetch(url, {
+    const config: AxiosRequestConfig = {
+      url,
       method,
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-        // 'Content-Type': 'application/json',
         Accept: 'application/vnd.github+json',
       },
-      body: JSON.stringify(body),
-    });
+      data: body,
+    };
 
-    if (!response.ok) {
+    const response = await axios(config);
+
+    // const response = await fetch(url, {
+    //   method,
+    //   headers: {
+    //     Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+    //     // 'Content-Type': 'application/json',
+    //     Accept: 'application/vnd.github+json',
+    //   },
+    //   body: JSON.stringify(body),
+    // });
+
+    if (response.status < 200 || response.status >= 300) {
       console.error('응답이 없습니다.');
       throw new Error('응답이 없습니다.');
     }
 
-    const data = await response.json();
-    return { data };
+    // const data = await response.json();
+    // return { data };
+    return { data: response.data };
   } catch (err: any) {
     console.error(err.message || err);
     throw new Error(err.message || err);

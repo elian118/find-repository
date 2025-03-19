@@ -1,6 +1,6 @@
 'use server';
 
-import { callFetchApi } from '@/utils';
+import { callAxiosApi } from '@/utils';
 import { Repo } from '@/app/[locale]/repos/types/Repo';
 import { def } from '@/app/[locale]/repos/consts';
 import { Option } from '@/types';
@@ -13,7 +13,7 @@ export const getRepositories = async (
 ): Promise<ApiResponse<Repo[]>> => {
   // delay test
   // await new Promise((r) => setTimeout(r, 3000));
-  const res = await callFetchApi<Repo[]>({
+  const res = await callAxiosApi<Repo[]>({
     url: `https://api.github.com/users/${username}/repos?page=${page ?? 1}&per_page=${perPage ?? def.perPage}`,
     method: 'GET',
   });
@@ -37,7 +37,7 @@ export const getRepositories = async (
 export const getLangOpts = async (username: string): Promise<ApiResponse<Option[]>> => {
   // delay test
   await new Promise((r) => setTimeout(r, 1400));
-  const res = await callFetchApi<Repo[]>({
+  const res = await callAxiosApi<Repo[]>({
     url: `https://api.github.com/users/${username}/repos?per_page=${def.maxPerPage}`,
     method: 'GET',
   });
