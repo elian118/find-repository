@@ -4,6 +4,7 @@ import { getRepository } from '@/app/[locale]/repo/services';
 import DetailContainer from '@/app/[locale]/repo/components/detail-container';
 import ModalContainer from '@/components/modal-container';
 import { Link, redirect } from '@/i18n/navigation';
+import { defaultLocale } from '@/consts/locales';
 
 const Repo = async ({
   params,
@@ -19,7 +20,7 @@ const Repo = async ({
   const t = createTranslator({ locale, messages: messages['Repo'] });
 
   if (!username && !repoName) {
-    redirect({ href: '/repos', locale: locale });
+    redirect({ href: '/repos', locale: locale ?? defaultLocale });
   }
 
   try {

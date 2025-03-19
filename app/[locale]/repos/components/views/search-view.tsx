@@ -8,6 +8,7 @@ import { def } from '@/app/[locale]/repos/consts';
 import { Option } from '@/types';
 import { useModal, useAsync } from '@/hooks';
 import { useTranslations } from 'next-intl';
+import Btn from '@/components/btn';
 
 type ReposContainerProps = {
   langOpts: Option[];
@@ -15,8 +16,16 @@ type ReposContainerProps = {
 
 const SearchView = (props: ReposContainerProps) => {
   const { langOpts } = props;
-  const { usernameState, pageState, reposState, isLastPageState, filterState } =
-    useContext(ReposContext);
+  const {
+    usernameState,
+    pageState,
+    reposState,
+    isLastPageState,
+    filterState,
+    isLoadingState,
+  } = useContext(ReposContext);
+  const [isLoading, setIsLoading] = isLoadingState;
+
   const { openModal } = useModal();
   const te = useTranslations('error');
   const t = useTranslations('SearchView');
@@ -102,9 +111,14 @@ const SearchView = (props: ReposContainerProps) => {
           }
           placeholder={t('userId')}
         />
-        <button ref={searchBtn} className="btn btn-sm btn-primary" onClick={search}>
+        <Btn
+          isLoading={isLoading}
+          ref={searchBtn}
+          className="btn btn-sm btn-primary"
+          onClick={search}
+        >
           {t('search')}
-        </button>
+        </Btn>
         <button
           className="btn btn-sm btn-primary"
           onClick={() => {
