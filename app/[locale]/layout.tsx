@@ -39,7 +39,7 @@ export default async function RootLayout({
         <NextIntlClientProvider>
           <ClientLayer>
             <Header />
-            {children}
+            <div className="mx-auto md:max-w-screen-2xl">{children}</div>
             <Modal />
           </ClientLayer>
         </NextIntlClientProvider>

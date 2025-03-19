@@ -109,7 +109,7 @@ const ListView = () => {
   }, [repos.length, order, targetKey]);
 
   return (
-    <div className="rounded-md h-160 overflow-y-scroll">
+    <div className="rounded-md tableContainer overflow-y-scroll">
       {repos.length > 0 && (
         <table className="table table-pin-rows">
           <thead>
@@ -157,29 +157,33 @@ const ListView = () => {
           <tbody>
             {repos.map((repo, idx) => (
               <tr
-                className={`hover:bg-sky-50 ${!lang || repo.language === lang ? '' : 'hidden'} `}
+                className={`hover:bg-sky-50 ${!lang || repo.language === lang ? '' : 'hidden'}`}
                 key={idx}
               >
                 <td>{repo.id}</td>
-                <td>
+                <td className="w-36 truncate">
                   <Link
-                    className="hover:btn-link cursor-pointer"
+                    className="hover:btn-link cursor-pointer truncate"
                     href={`/repo?username=${username}&repoName=${repo.name}`}
                     locale={locale as string}
                   >
                     {repo.name}
                   </Link>
                 </td>
-                <td>{repo.description}</td>
-                <td>{'⭐️'.repeat(repo.stargazers_count)}</td>
-                <td>{convertToLocalDateTime(repo.updated_at)}</td>
+                <td className="w-40 truncate">
+                  <span className="truncate">{repo.description}</span>
+                </td>
+                <td className="w-24 truncate">{'⭐️'.repeat(repo.stargazers_count)}</td>
+                <td className="min-w-36 truncate">
+                  {convertToLocalDateTime(repo.updated_at)}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
       {isLastPage ? (
-        <div className="my-8 flex justify-center items-center">
+        <div className="my-20 flex justify-center items-center">
           <span>{t('importedAllTheData')}</span>
         </div>
       ) : (

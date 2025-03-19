@@ -72,8 +72,8 @@ const SearchView = (props: ReposContainerProps) => {
   }, [error]);
 
   return (
-    <div className="flex items-center justify-between gap-2 w-full">
-      <div className="w-1/2 flex items-center gap-2">
+    <div className="flex flex-wrap items-center justify-between gap-2 w-full">
+      <div className="flex items-center gap-2">
         <div className="w-30">
           {t('repository')}(
           {repos?.filter((e) => (!!lang ? e.language === lang : true)).length ?? 0})
@@ -91,7 +91,7 @@ const SearchView = (props: ReposContainerProps) => {
           ))}
         </select>
       </div>
-      <div className="w-1/2 flex justify-end items-center gap-2">
+      <div className="flex justify-end items-center gap-2">
         <Input
           ref={searchInput}
           type="text"

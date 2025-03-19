@@ -30,7 +30,9 @@ const ClientLayer = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <GlobalContext.Provider value={value}>
-      <div data-theme={isDark ? 'dark' : 'light'}>{children}</div>
+      <div className="mx-auto" data-theme={isDark ? 'dark' : 'light'}>
+        {children}
+      </div>
     </GlobalContext.Provider>
   );
 };

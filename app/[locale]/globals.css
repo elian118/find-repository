@@ -33,3 +33,7 @@ body {
 .mainContainer {
   height: calc(100vh - 48px);
 }
+
+.tableContainer {
+  height: calc(100vh - 240px);
+}
