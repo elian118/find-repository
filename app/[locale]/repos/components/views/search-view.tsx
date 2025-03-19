@@ -24,7 +24,7 @@ const SearchView = (props: ReposContainerProps) => {
     filterState,
     isLoadingState,
   } = useContext(ReposContext);
-  const [isLoading, setIsLoading] = isLoadingState;
+  const [isLoading] = isLoadingState;
 
   const { openModal } = useModal();
   const te = useTranslations('error');
@@ -107,7 +107,7 @@ const SearchView = (props: ReposContainerProps) => {
           value={username ?? ''}
           onChange={(e) => setUsername(e.target.value)}
           onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) =>
-            e.keyCode === 13 && search()
+            e.key === 'Enter' && search()
           }
           placeholder={t('userId')}
         />

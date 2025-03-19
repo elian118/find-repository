@@ -17,6 +17,7 @@ const Modal = () => {
             <button
               className="btn btn-sm btn-outline"
               onClick={() => {
+                // eslint-disable-next-line @typescript-eslint/no-unused-expressions
                 !!action && action();
                 document.getElementById('closeModalBtn')?.click();
               }}

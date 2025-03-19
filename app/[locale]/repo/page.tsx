@@ -10,10 +10,10 @@ const Repo = async ({
   params,
   searchParams,
 }: {
-  params: { locale: string };
-  searchParams: { [key: string]: string | undefined };
+  params: Promise<{ locale: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) => {
-  const { locale } = params;
+  const { locale } = await params;
   const { username, repoName } = await searchParams;
   const messages = (await import(`@/messages/${locale}.json`)).default;
   const te = createTranslator({ locale, messages: messages['error'] });
