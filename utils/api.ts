@@ -25,23 +25,14 @@ export const callAxiosApi = async <T>(req: GitRequest): Promise<ApiResponse<T>> 
 
     const response = await axios(config);
 
-    // const response = await fetch(url, {
-    //   method,
-    //   headers: {
-    //     Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-    //     // 'Content-Type': 'application/json',
-    //     Accept: 'application/vnd.github+json',
-    //   },
-    //   body: JSON.stringify(body),
-    // });
-
     if (response.status < 200 || response.status >= 300) {
       console.error('응답이 없습니다.');
       throw new Error('응답이 없습니다.');
     }
+    // error test
+    // console.error('응답이 없습니다.');
+    // throw new Error('응답이 없습니다.');
 
-    // const data = await response.json();
-    // return { data };
     return { data: response.data };
   } catch (err: any) {
     console.error(err.message || err);
