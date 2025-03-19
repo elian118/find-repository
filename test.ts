@@ -3,7 +3,7 @@ import { getRepository } from '@/app/[locale]/repo/services';
 import { def } from '@/app/[locale]/repos/consts';
 import { expectValues } from '@/consts/tests';
 
-test('1 is 1', () => {
+test('하나면 하나지 둘이 아니야', () => {
   expect(1).toBe(1);
 });
 
