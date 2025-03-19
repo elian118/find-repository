@@ -11,7 +11,7 @@ const compat = new FlatCompat({
 
 const eslintConfig = [
   ...compat.config({
-    extends: ['next/core-web-vitals', 'next/typescript', 'prettier'],
+    extends: ['next/core-web-vitals', 'next/typescript'],
     rules: {
       '@typescript-eslint/interface-name-prefix': 'on',
       '@typescript-eslint/explicit-function-return-type': 'on',
