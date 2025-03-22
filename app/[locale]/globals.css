@@ -37,3 +37,7 @@ body {
 .tableContainer {
   height: calc(100vh - 240px);
 }
+
+.mobileTableContainer {
+  height: calc(100vh - 280px);
+}

@@ -15,8 +15,11 @@ import { useAsync, useModal } from '@/hooks';
 import { Link } from '@/i18n/navigation';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { GlobalContext } from '@/global-context';
 
 const ListView = () => {
+  const { isMobileDeviceState } = useContext(GlobalContext);
+  const [isMobileDevice] = isMobileDeviceState;
   const {
     usernameState,
     pageState,
@@ -33,6 +36,7 @@ const ListView = () => {
   const [lang] = filterState;
   const [order, setOrder] = useState<'none' | 'asc' | 'desc'>('none');
   const [targetKey, setTargetKey] = useState<string>('updated_at');
+
   const { openModal } = useModal();
   const { locale } = useParams();
   const te = useTranslations('error');
@@ -108,7 +112,10 @@ const ListView = () => {
   }, [repos.length, order, targetKey]);
 
   return (
-    <div className="rounded-md tableContainer overflow-y-scroll">
+    <div
+      className={`rounded-md ${isMobileDevice ? 'mobileTableContainer' : 'tableContainer'} overflow-y-scroll`}
+      // className={`rounded-md tableContainer overflow-y-scroll`}
+    >
       {repos.length > 0 && (
         <table className="table table-pin-rows">
           <thead>
@@ -193,7 +200,11 @@ const ListView = () => {
                 <ArrowDown />
               </button>
             </div>
-            {isLoading && <LoadingView />}
+            {isLoading && (
+              <div className="w-full h-36 flex justify-center items-center">
+                <LoadingView />
+              </div>
+            )}
           </>
         )
       )}
