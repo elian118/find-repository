@@ -5,6 +5,7 @@ import { def, headers } from '@/app/[locale]/repos/consts';
 import { useTranslations } from 'next-intl';
 
 const Loading = () => {
+  const l = useTranslations('ListView');
   const t = useTranslations('SearchView');
   return (
     <div className="flex flex-col gap-2 p-4 w-full mainContainer">
@@ -36,7 +37,7 @@ const Loading = () => {
                     }`}
                   >
                     <div className="flex items-center gap-2">
-                      <span className="truncate">{col.name}</span>
+                      <span className="truncate">{l(col.intlKey)}</span>
                     </div>
                   </th>
                 ))}
