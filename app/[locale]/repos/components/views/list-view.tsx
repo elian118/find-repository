@@ -109,10 +109,7 @@ const ListView = () => {
   }, [repos.length, order, targetKey]);
 
   return (
-    <div
-      className="rounded-md mobileTableContainer sm:tableContainer overflow-y-scroll"
-      // className={`rounded-md tableContainer overflow-y-scroll`}
-    >
+    <div className="rounded-md mobileTableContainer sm:tableContainer overflow-y-scroll">
       {repos.length > 0 && (
         <table className="table table-pin-rows">
           <thead>
