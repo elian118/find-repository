@@ -15,11 +15,8 @@ import { useAsync, useModal } from '@/hooks';
 import { Link } from '@/i18n/navigation';
 import { useParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
-import { GlobalContext } from '@/global-context';
 
 const ListView = () => {
-  const { isMobileDeviceState } = useContext(GlobalContext);
-  const [isMobileDevice] = isMobileDeviceState;
   const {
     usernameState,
     pageState,
@@ -113,7 +110,7 @@ const ListView = () => {
 
   return (
     <div
-      className={`rounded-md ${isMobileDevice ? 'mobileTableContainer' : 'tableContainer'} overflow-y-scroll`}
+      className="rounded-md mobileTableContainer sm:tableContainer overflow-y-scroll"
       // className={`rounded-md tableContainer overflow-y-scroll`}
     >
       {repos.length > 0 && (
